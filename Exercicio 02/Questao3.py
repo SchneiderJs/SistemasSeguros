@@ -1,4 +1,5 @@
-import psycopg2
+import psycopg2 
+
 try:
 
   # Conecta no database
@@ -27,9 +28,12 @@ try:
   cursor.execute("INSERT INTO pessoa (id_pessoa, nm_pessoa, ds_pessoa, nr_idade) VALUES (11, 'Simão Cananeu', 'O zelote', 28);")
   cursor.execute("INSERT INTO pessoa (id_pessoa, nm_pessoa, ds_pessoa, nr_idade) VALUES (12, 'Judas Iscariotes', 'Aquele que o traiu e foi substituído por Matias', 30);")
 
-  # Sql Injection
-  name = input('Digite o nome: ')
-  cursor.execute("SELECT * FROM pessoa WHERE nm_pessoa = '%s';" % name)
+  # Prevendo Sql Injection 
+  name = input('Digite o nome: ')  
+
+  querry = "SELECT * FROM pessoa WHERE nm_pessoa = (%s);"
+  data = (name,)
+  cursor.execute(querry, data)
   
   for row in cursor.fetchall():
     print (row)

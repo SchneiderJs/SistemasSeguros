@@ -36,7 +36,7 @@ try:
   	if letter not in possible_characters:
   		raise Exception("Caractere \'" + letter + "\' não permitido")
   		
-  cursor.execute("SELECT * FROM pessoa WHERE nm_pessoa = %s;", (name,)) 
+  cursor.execute("SELECT * FROM pessoa WHERE nm_pessoa = '%s';" % name)
   
   for row in cursor.fetchall():
     print (row)
