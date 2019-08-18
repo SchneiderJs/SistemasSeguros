@@ -30,7 +30,7 @@ try:
 
   for letter in name.lower():
   	if letter not in possible_characters:
-  		raise Exception("Caractere \'" + letter + "\' não permitido")
+  		raise Exception("Caractere \'" + letter + "\' não permitido.")
   		
   cursor.execute("SELECT * FROM professor WHERE nm_professor = '%s';" % name)
   
@@ -40,11 +40,10 @@ try:
     print (row)
 
 except (Exception, psycopg2.Error) as error:
-  print ("Erro ao conectar no PostgreSQL.", error)
+  print ("Erro ao conectar.", error)
   
 finally:
 # Fecha a conexão
   if (connection):
     cursor.close()
     connection.close()
-    print("PostgreSQL: conexão fechada com sucesso.")
