@@ -3,7 +3,7 @@ try:
 
   # Cria uma conexão com o banco de dados
   connection = psycopg2.connect(user = "postgres",
-                                password = "postgres",
+                                password = "4560",
                                 host="localhost",
                                 port = "5432",
                                 database = "pg_db")
