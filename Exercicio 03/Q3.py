@@ -1,5 +1,6 @@
-# C:\DSS-TESTE\Sophia.mp4
-# C:\DSS-TESTE\Sophia.mp4 & cd C:\ & dir 
+# C:\DSS-TESTE\musica.mp3
+# C:\DSS-TESTE\musica.mp3 & cd C:\ & dir 
 
-import IPython.display as ipd
-ipd.Audio(filename='la-vie-en-rose.mp3')
+import webbrowser
+music_path = input("Informe o diretório da música: ")
+webbrowser.open(music_path)
