@@ -1,1 +1,1 @@
-print("Versão comprometida")
+print("Versão atual")
