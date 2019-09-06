@@ -12,10 +12,16 @@ def request_actualization():
     return requests.post(url, files=files, data=json) 
 
 
-def unzip(file_name = "Atualizacao.zip"):
+def unzip(file_name="Atualizacao.zip"):
     with ZipFile(file_name, 'r') as zip:
         zip.extractall()
     os.remove(file_name)
 
+def safe_unzip(file_name="Atualizacao.zip", password="password"):
+    with ZipFile(file_name) as zip:
+        zip.extractall(pwd=bytes(password, 'utf-8'))
+    os.remove(file_name)
+
+
 print(request_actualization())
-unzip()
+safe_unzip()
