@@ -1,27 +1,18 @@
 import os
-import requests
 from zipfile import ZipFile
-
-def request_actualization():
-    url  = "http://127.0.0.1:5000/"
-    files = {'file': open('../server_data/Atualizacao.zip', 'rb')}
-    
-    new_file_with_path = os.getcwd() + "/Atualizacao.zip"
-    json = {"name": new_file_with_path}
-
-    return requests.post(url, files=files, data=json) 
-
-
-def unzip(file_name="Atualizacao.zip"):
-    with ZipFile(file_name, 'r') as zip:
-        zip.extractall()
-    os.remove(file_name)
+from RequestAtt import request_actualization 
 
 def safe_unzip(file_name="Atualizacao.zip", password="password"):
     with ZipFile(file_name) as zip:
-        zip.extractall(pwd=bytes(password, 'utf-8'))
-    os.remove(file_name)
+        if(zip.pwd != password):
+            raise(Exception("Não foi possivel realizar a atualizacao"))
+        zip.extractall(pwd=bytes(password, 'utf-8')) 
 
-
-print(request_actualization())
-safe_unzip()
+try:
+    print(request_actualization())
+    safe_unzip()
+    os.system("python App.py")
+except Exception as e:
+    print(e) 
+finally:
+    os.remove("Atualizacao.zip")
