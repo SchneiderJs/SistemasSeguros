@@ -1,6 +1,9 @@
 import os
 import requests
 def request_actualization():
+    """
+    Sends a POST request, updating the file named "Actualization" to the user
+    """
     url  = "http://127.0.0.1:5000/"
     files = {'file': open('../server_data/Actualization.zip', 'rb')}
     
