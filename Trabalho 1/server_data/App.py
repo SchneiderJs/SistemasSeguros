@@ -1,1 +1,1 @@
-print("Versão comprometida")
+print("Versão 2.0")
